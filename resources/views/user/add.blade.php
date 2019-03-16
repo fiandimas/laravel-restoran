@@ -1,7 +1,7 @@
 @extends('../template')
 @section('content')
   <div class="card-body">
-    <form id="form" action="{{ route('user.store') }}">
+    <form id="form" action="{{ route('user.store') }}" method="POST">
       @csrf
       <div class="row">
         <div class="col form-group">

@@ -1,11 +1,11 @@
 @extends('../template')
 @section('content')
   <div class="card-body">
-    <form id="form" action="{{ route('menu.store') }}">
+    <form id="form" action="{{ route('menu.store') }}" method="POST">
       @csrf
       <div class="row">
         <div class="col form-group">
-          <label class="control-label">Nama User</label>
+          <label class="control-label">Nama Masakan</label>
           <input type="text" class="form-control" name="name">
         </div>
       </div>

@@ -15,8 +15,8 @@
         <td>{{ $data->name }}</td>
         <td>{{ $data->price }}</td>
         <td>
-          <a href="{{ route('menu.edit',['id' => $data->id]) }}" class="btn btn-warning">Edit</a> | 
-          <button class="btn btn-danger" onclick="deleteMenu({{ $data->id }})">Delete</button>
+          <a href="{{ route('menu.edit',['id' => $data->id]) }}" class="btn btn-warning">Sunting</a> | 
+          <button class="btn btn-danger" onclick="deleteMenu({{ $data->id }})" id="button-{{ $data->id }}">Hapus</button>
         </td>
       </tr> 
       @endforeach

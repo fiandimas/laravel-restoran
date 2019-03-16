@@ -1,6 +1,7 @@
 function deleteUser(id){
+  $('#button-'+id).attr('disabled',true);
   swal({
-    title: 'Perhatian',
+    title: 'Peringatan!',
     text: 'Apa anda yakin menghapus user ini ?',
     icon: 'warning',
     buttons: true,
@@ -25,6 +26,8 @@ function deleteUser(id){
           })
         }
       })
+    }else{
+      $('#button-'+id).attr('disabled',false);
     }
   })
 }

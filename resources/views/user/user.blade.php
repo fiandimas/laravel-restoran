@@ -18,7 +18,7 @@
         <td>{{ $data->lname }}</td>
         <td>
           <a href="{{ route('user.edit',['id' => $data->id]) }}" class="btn btn-warning">Edit</a> | 
-          <button class="btn btn-danger" onclick="deleteUser({{ $data->id }})" id="delete-{{ $data->id }}">Delete</button>
+          <button class="btn btn-danger" onclick="deleteUser({{ $data->id }})" id="button-{{ $data->id }}">Delete</button>
         </td>
       </tr> 
       @endforeach

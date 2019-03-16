@@ -49,7 +49,7 @@ class MenuController extends Controller
     $menu = Menu::where('id',$id)->select('id','name','price')->first();
     $data = [
       'menu' => $menu,
-      'capt' => 'Edit Masakan',
+      'capt' => 'Sunting Masakan',
       'js' => 'js/menu/edit.js',
       'amenu' => 'active'
     ];

@@ -21,14 +21,18 @@ class LevelController extends Controller
 
   public function edit($id){
     $level = Level::where('id',$id)->select('id','name')->first();
-    $data = [
-      'level' => $level,
-      'capt' => 'Edit Level',
-      'js' => 'js/level/edit.js',
-      'alevel' => 'active'
-    ];
-
-    return view('level.edit', $data);
+    if($level){
+      $data = [
+        'level' => $level,
+        'capt' => 'Sunting Level',
+        'js' => 'js/level/edit.js',
+        'alevel' => 'active'
+      ];
+  
+      return view('level.edit', $data);
+    }else{
+      return redirect('/level');
+    }
   }
 
   public function update(Request $req,$id){

@@ -1,7 +1,8 @@
 function deleteMenu(id){
+  $('#button-'+id).attr('disabled',true);
   swal({
     title: 'Peringatan!',
-    text: 'Apa anda yakin hapus menu ini ?',
+    text: 'Apa anda yakin menghapus menu ini ?',
     icon: 'warning',
     buttons: true
   }).then((ok) => {
@@ -27,6 +28,8 @@ function deleteMenu(id){
           })
         }
       })
+    }else{
+      $('#button-'+id).attr('disabled',false);
     }
   })
 }
