@@ -12,5 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('template');
+});
+Route::get('/login', function(){
+  return view('auth.login');
+});
+
+Route::get('/level','LevelController@show');
+Route::get('/user','UserController@index');
+Route::get('/masakan','MenuController@index');
+Route::get('/level/{id}','LevelController@edit')->name('level.edit');
+Route::post('/level/{id}','LevelController@update')->name('level.update');
+Route::post('/login','LoginController@login')->name('login');
+
+Route::get('/hash', function(){
+  return Hash::make('scarlet');
 });

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Ecommerce Dashboard &mdash; Stisla</title>
 
     <!-- General CSS Files -->
@@ -25,23 +26,12 @@
               <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
               <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
             </ul>
-            
           </form>
           <ul class="navbar-nav navbar-right">
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-              <img alt="image" src="img/avatar/random.jpg" class="rounded-circle mr-1">
+              <img alt="image" src="{{ asset('img/avatar/random.jpg') }}" class="rounded-circle mr-1">
               <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
               <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-title">Logged in 5 min ago</div>
-                <a href="features_profile.html" class="dropdown-item has-icon">
-                  <i class="far fa-user"></i> Profile
-                </a>
-                <a href="features_activities.html" class="dropdown-item has-icon">
-                  <i class="fas fa-bolt"></i> Activities
-                </a>
-                <a href="features_settings.html" class="dropdown-item has-icon">
-                  <i class="fas fa-cog"></i> Settings
-                </a>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item has-icon text-danger">
                   <i class="fas fa-sign-out-alt"></i> Logout
@@ -61,43 +51,39 @@
             <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
               <li class="dropdown active">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Master</span></a>
                 <ul class="dropdown-menu">
-                  <li class=""><a class="nav-link" href="index_0.html">General Dashboard</a></li>
-                  <li class="active"><a class="nav-link" href="index.html">Ecommerce Dashboard</a></li>
+                  <li class=""><a class="nav-link" href="{{ url('/level') }}">Level</a></li>
+                  <li class=""><a class="nav-link" href="{{ url('/masakan') }}">Masakan</a></li>
+                  <li class=""><a class="nav-link" href="{{ url('/user') }}">User</a></li>
                 </ul>
               </li>
-              <li class="menu-header">Starter</li>
-              <li class="dropdown ">
-                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
+              <li class="dropdown active">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Transaksi</span></a>
                 <ul class="dropdown-menu">
-                  <li class=""><a class="nav-link" href="layout_default.html">Default Layout</a></li>
-                  <li><a class="nav-link" href="layout_transparent.html">Transparent Sidebar</a></li>
-                  <li><a class="nav-link" href="layout_top_navigation.html">Top Navigation</a></li>
+                  <li class=""><a class="nav-link" href="{{ url('/transaksi') }}">Transaksi</a></li>
+                </ul>
+              </li>
+              <li class="dropdown active">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Laporan</span></a>
+                <ul class="dropdown-menu">
+                  <li class=""><a class="nav-link" href="{{ url('/laporan') }}">Laporan PDF</a></li>
                 </ul>
               </li>
             </ul>
-
-            <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation
-              </a>
-            </div>
           </aside>
         </div>
         <!-- Main Content -->
         <div class="main-content">
           <section class="section">
             <div class="section-header">
-              <h1>Dashboard</h1>
+              <h1>Master Level</h1>
             </div>
             <div class="row">
               <div class="col">
                 <div class="card">
                   <div class="card-wrap">
-                    <div class="card-body">
-                      @yield('content')
-                    </div>
+                    @yield('content')
                   </div>
                 </div>
               </div>
@@ -122,5 +108,13 @@
     <!-- Template JS File -->
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script>
+      // Set ajax headers
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      })
+    </script>
   </body>
 </html>
