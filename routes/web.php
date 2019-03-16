@@ -21,6 +21,11 @@ Route::get('/login', function(){
 Route::get('/level','LevelController@show');
 Route::get('/user','UserController@index');
 Route::get('/masakan','MenuController@index');
+Route::get('/masakan/tambah','MenuController@add');
+Route::post('/masakan/tambah','MenuController@store')->name('menu.store');
+Route::get('/masakan/{id}','MenuController@edit')->name('menu.edit');
+Route::post('/masakan/{id}','MenuController@update')->name('menu.update');
+Route::delete('/masakan/{id}','MenuController@delete')->name('menu.delete');
 Route::get('/level/{id}','LevelController@edit')->name('level.edit');
 Route::post('/level/{id}','LevelController@update')->name('level.update');
 Route::post('/login','LoginController@login')->name('login');
