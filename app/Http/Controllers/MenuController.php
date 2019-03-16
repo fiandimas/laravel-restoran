@@ -10,9 +10,10 @@ class MenuController extends Controller
   public function index(){
     $menu = Menu::select('id','name','price')->get();
     $data = [
-      'menu' => $menu
+      'menu' => $menu,
+      'capt' => 'Master Masakan'
     ];
-    
+
     return view('menu.menu', $data);
   }
 }

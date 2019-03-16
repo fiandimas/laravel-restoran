@@ -77,7 +77,7 @@
         <div class="main-content">
           <section class="section">
             <div class="section-header">
-              <h1>Master Level</h1>
+              <h1>{{ $capt }}</h1>
             </div>
             <div class="row">
               <div class="col">
@@ -116,5 +116,10 @@
         }
       })
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>const url = "{{ url('') }}";</script>
+    @isset($js)
+      <script src="{{ asset($js) }}"></script>
+    @endisset
   </body>
 </html>

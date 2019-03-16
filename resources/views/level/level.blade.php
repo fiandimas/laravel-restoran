@@ -13,7 +13,7 @@
         <td>{{ $data->name }}</td>
         <td>
           <a href="{{ route('level.edit',['id' => $data->id]) }}" class="btn btn-warning">Edit</a> | 
-          <a href="" class="btn btn-danger" onclick="return confirm('Are you sure to delete this level ?')">Delete</a>
+          <button class="btn btn-danger" onclick="deleteMenu({{ $data->id }})">Delete</button>
         </td>
       </tr> 
       @endforeach
