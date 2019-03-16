@@ -12,7 +12,8 @@ class MenuController extends Controller
     $data = [
       'menu' => $menu,
       'capt' => 'Master Masakan',
-      'js' => 'js/menu/delete.js'
+      'js' => 'js/menu/delete.js',
+      'amenu' => 'active'
     ];
 
     return view('menu.menu', $data);
@@ -21,7 +22,8 @@ class MenuController extends Controller
   public function add(){
     $data = [
       'capt' => 'Tambah Masakan',
-      'js' => 'js/menu/add.js'
+      'js' => 'js/menu/add.js',
+      'amenu' => 'active'
     ];
 
     return view('menu.add', $data);
@@ -48,7 +50,8 @@ class MenuController extends Controller
     $data = [
       'menu' => $menu,
       'capt' => 'Edit Masakan',
-      'js' => 'js/menu/edit.js'
+      'js' => 'js/menu/edit.js',
+      'amenu' => 'active'
     ];
     return view('menu.edit', $data);
   }

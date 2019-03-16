@@ -5,7 +5,7 @@
       @csrf
       <div class="row">
         <div class="col form-group">
-          <label class="control-label">Nama Masakan</label>
+          <label class="control-label">Nama User</label>
           <input type="text" class="form-control" name="name">
         </div>
       </div>

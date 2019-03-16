@@ -1,6 +1,7 @@
 @extends('../template')
 @section('content')
   <div class="card-body">
+    <center><a href="{{ url('user/tambah') }}" class="btn btn-success mt-2 mb-4">Tambah User</a></center>
     <table class="table table-striped">
       <tr>
         <th>No</th>
@@ -16,8 +17,8 @@
         <td>{{ $data->username }}</td>
         <td>{{ $data->lname }}</td>
         <td>
-          <a href="{{ route('level.edit',['id' => $data->id]) }}" class="btn btn-warning">Edit</a> | 
-          <a href="" class="btn btn-danger" onclick="return confirm('Are you sure to delete this level ?')">Delete</a>
+          <a href="{{ route('user.edit',['id' => $data->id]) }}" class="btn btn-warning">Edit</a> | 
+          <button class="btn btn-danger" onclick="deleteUser({{ $data->id }})" id="delete-{{ $data->id }}">Delete</button>
         </td>
       </tr> 
       @endforeach

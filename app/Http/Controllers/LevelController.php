@@ -12,7 +12,8 @@ class LevelController extends Controller
     $data = [
       'level' => $level,
       'capt' => 'Master Level',
-      'js' => 'js/level/delete.js'
+      'js' => 'js/level/delete.js',
+      'alevel' => 'active'
     ];
 
     return view('level.level', $data);
@@ -23,7 +24,8 @@ class LevelController extends Controller
     $data = [
       'level' => $level,
       'capt' => 'Edit Level',
-      'js' => 'js/level/edit.js'
+      'js' => 'js/level/edit.js',
+      'alevel' => 'active'
     ];
 
     return view('level.edit', $data);

@@ -53,21 +53,21 @@
               <li class="dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Master</span></a>
                 <ul class="dropdown-menu">
-                  <li class=""><a class="nav-link" href="{{ url('/level') }}">Level</a></li>
-                  <li class=""><a class="nav-link" href="{{ url('/masakan') }}">Masakan</a></li>
-                  <li class=""><a class="nav-link" href="{{ url('/user') }}">User</a></li>
+                  <li class="{{ isset($alevel) ? $alevel : '' }}"><a class="nav-link" href="{{ url('/level') }}">Level</a></li>
+                  <li class="{{ isset($amenu) ? $amenu : '' }}"><a class="nav-link" href="{{ url('/masakan') }}">Masakan</a></li>
+                  <li class="{{ isset($auser) ? $auser : '' }}"><a class="nav-link" href="{{ url('/user') }}">User</a></li>
                 </ul>
               </li>
               <li class="dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Transaksi</span></a>
                 <ul class="dropdown-menu">
-                  <li class=""><a class="nav-link" href="{{ url('/transaksi') }}">Transaksi</a></li>
+                  <li class="{{ isset($atransaction) ? $atransaction : '' }}"><a class="nav-link" href="{{ url('/transaksi') }}">Transaksi</a></li>
                 </ul>
               </li>
               <li class="dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Laporan</span></a>
                 <ul class="dropdown-menu">
-                  <li class=""><a class="nav-link" href="{{ url('/laporan') }}">Laporan PDF</a></li>
+                  <li class="{{ isset($areport) ? $areport : '' }}"><a class="nav-link" href="{{ url('/laporan') }}">Laporan PDF</a></li>
                 </ul>
               </li>
             </ul>
