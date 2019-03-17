@@ -33,7 +33,7 @@
               <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
               <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item has-icon text-danger">
+                <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
                   <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
               </div>
@@ -88,6 +88,7 @@
                 </div>
               </div>
             </div>
+            @yield('transaction')
           </section>
         </div>
         <footer class="main-footer">
@@ -121,5 +122,20 @@
     @isset($js)
       <script src="{{ asset($js) }}"></script>
     @endisset
+    <script>
+      function cart(id){
+        var status_order = $('#status_order-'+id).find(':selected').val();
+        $.ajax({
+          type: 'POST',
+          url: url + '/transaksi/' + id,
+          data: {
+            status_order: status_order
+          },
+          success: function(){
+            window.location.href = url + '/transaksi';
+          }
+        })
+      }
+    </script>
   </body>
 </html>

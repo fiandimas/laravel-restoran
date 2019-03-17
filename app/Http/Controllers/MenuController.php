@@ -47,13 +47,18 @@ class MenuController extends Controller
 
   public function edit($id){
     $menu = Menu::where('id',$id)->select('id','name','price')->first();
-    $data = [
-      'menu' => $menu,
-      'capt' => 'Sunting Masakan',
-      'js' => 'js/menu/edit.js',
-      'amenu' => 'active'
-    ];
-    return view('menu.edit', $data);
+    if($menu){
+      $data = [
+        'menu' => $menu,
+        'capt' => 'Sunting Masakan',
+        'js' => 'js/menu/edit.js',
+        'amenu' => 'active'
+      ];
+
+      return view('menu.edit', $data);
+    }else{
+      return redirect('/masakan');
+    }
   }
 
   public function update(Request $req,$id){
@@ -67,7 +72,10 @@ class MenuController extends Controller
     $menu->price = $req->price;
 
     $menu->save();
-    return $menu;
+    
+    return response()->json([
+      'success' => true
+    ]);
   }
 
   public function delete($id){

@@ -25,7 +25,7 @@ class UserController extends Controller
   public function add(){
     $data = [
       'level' => Level::select('id','name')->get(), 
-      'capt' => 'Tambah pengguna',
+      'capt' => 'Tambah Pengguna',
       'auser' => 'active',
       'js' => 'js/user/add.js'
     ];

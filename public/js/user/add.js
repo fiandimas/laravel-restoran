@@ -27,7 +27,7 @@ $('#form').submit(function(e){
     error: function(){
       $('#submit').attr('disabled',false);
       swal({
-        title: 'Error',
+        title: 'Gagal!',
         text: 'Silahkan coba lagi',
         icon: 'error'
       })

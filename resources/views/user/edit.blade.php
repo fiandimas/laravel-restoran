@@ -6,14 +6,14 @@
       <input type="hidden" name="id" value="{{ $user->id }}">
       <div class="row">
         <div class="col form-group">
-          <label class="control-label">Nama User</label>
+          <label class="control-label">Nama</label>
           <input type="text" class="form-control" name="name" value="{{ $user->uname }}">
         </div>
       </div>
 
       <div class="row">
         <div class="col form-group">
-          <label class="control-label">Username</label>
+          <label class="control-label">Nama Pengguna</label>
           <input type="text" class="form-control"  name="username" value="{{ $user->username }}" readonly>
           <font color="red" id="username"></font>
         </div>

@@ -17,7 +17,9 @@ Route::get('/', function () {
 Route::get('/login', function(){
   return view('auth.login');
 });
-
+Route::get('/logout', function(){
+  return 'ok';
+})->name('logout');
 Route::get('/level','LevelController@show');
 Route::get('/user','UserController@index');
 Route::get('/user/tambah','UserController@add');
@@ -34,7 +36,10 @@ Route::delete('/masakan/{id}','MenuController@delete')->name('menu.delete');
 Route::get('/level/{id}','LevelController@edit')->name('level.edit');
 Route::post('/level/{id}','LevelController@update')->name('level.update');
 Route::post('/login','LoginController@login')->name('login');
-
-Route::get('/hash', function(){
-  return Hash::make('scarlet');
+Route::get('/transaksi','TransactionController@index');
+Route::get('/transaksi/{rowId}','TransactionController@removeCart')->name('cart.remove');
+Route::post('/transaksi/{id}','TransactionController@addCart')->name('cart.add');
+Route::get('/cek', function(){
+  return Cart::content();
 });
+

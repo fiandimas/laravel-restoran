@@ -5,14 +5,14 @@
       @csrf
       <div class="row">
         <div class="col form-group">
-          <label class="control-label">Nama User</label>
+          <label class="control-label">Nama</label>
           <input type="text" class="form-control" name="name">
         </div>
       </div>
 
       <div class="row">
         <div class="col form-group">
-          <label class="control-label">Username</label>
+          <label class="control-label">Nama Pengguna</label>
           <input type="text" class="form-control"  name="username">
           <font color="red" id="username"></font>
         </div>
@@ -20,7 +20,7 @@
 
       <div class="row">
         <div class="col form-group">
-          <label class="control-label">Password</label>
+          <label class="control-label">Kata Sandi</label>
           <input type="password" class="form-control"  name="password">
         </div>
       </div>
