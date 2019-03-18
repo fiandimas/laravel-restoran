@@ -126,11 +126,8 @@
       function cart(id){
         var status_order = $('#status_order-'+id).find(':selected').val();
         $.ajax({
-          type: 'POST',
-          url: url + '/transaksi/' + id,
-          data: {
-            status_order: status_order
-          },
+          type: 'GET',
+          url: url + '/transaksi/' + id + '/' + status_order,
           success: function(){
             window.location.href = url + '/transaksi';
           }

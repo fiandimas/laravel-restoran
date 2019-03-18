@@ -18,7 +18,7 @@ class TransactionController extends Controller
     return view('transaction.transaction',$data);
   }
 
-  public function addCart(Request $req,$id){
+  public function addCart($id,$status){
     $menu =  Menu::where('id',$id)->select('id','name','price')->first();
     if($menu){
       Cart::add([
@@ -27,7 +27,7 @@ class TransactionController extends Controller
         'qty' => 1,
         'price' => $menu->price,
         'options' => [
-          'status' => $req->status_order
+          'status' => $status
         ]
       ]);
 
@@ -39,6 +39,11 @@ class TransactionController extends Controller
 
   public function removeCart($rowId){
     Cart::remove($rowId);
+    return redirect('/transaksi');
+  }
+
+  public function destroyCart(){
+    Cart::destroy();
     return redirect('/transaksi');
   }
 }

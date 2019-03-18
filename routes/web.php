@@ -37,8 +37,11 @@ Route::get('/level/{id}','LevelController@edit')->name('level.edit');
 Route::post('/level/{id}','LevelController@update')->name('level.update');
 Route::post('/login','LoginController@login')->name('login');
 Route::get('/transaksi','TransactionController@index');
+Route::get('/transaksi/destroy','TransactionController@destroyCart')->name('cart.destroy');
 Route::get('/transaksi/{rowId}','TransactionController@removeCart')->name('cart.remove');
-Route::post('/transaksi/{id}','TransactionController@addCart')->name('cart.add');
+Route::get('/transaksi/{id}/{status}','TransactionController@addCart')->name('cart.add');
+Route::get('/laporan','ReportController@index');
+Route::get('/laporan/{id}','ReportController@show')->name('report.print');
 Route::get('/cek', function(){
   return Cart::content();
 });

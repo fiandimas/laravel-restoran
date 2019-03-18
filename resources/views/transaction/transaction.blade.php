@@ -1,7 +1,7 @@
 @extends('../template')
 @section('transaction')
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="row">
         @foreach($menu as $data)  
           <div class="col-sm-6">
@@ -22,7 +22,7 @@
         @endforeach
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8">
       <div class="card">
         <div class="card-wrap">
           <div class="card-body">
@@ -56,13 +56,16 @@
                 <div class="col form-group">
                   <label class="control-label">Status Order</label>
                   <select class="form-control" name="status_order">
-                    <option>ssd</option>
+                    <option value="cash">Cash</option>
+                    <option value="credit">Kredit</option>
                   </select>
                 </div>
               </div>
             </form>
-
-            <table class="table table-responsive table-striped">
+            <span>
+              <h3>Transaksi<small><a href="{{ route('cart.destroy') }}" style="float:right" class="btn btn-danger">Hapus</a></small></h3>
+            </span>
+            <table class="table table-striped">
               <tr>
                 <th>Masakan</th>
                 <th>Harga</th>
@@ -83,6 +86,10 @@
                 </td>
               </tr>
               @endforeach
+              <tr style="border-bottom:5px black solid">
+                <th colspan="5">Total</th>
+                <th>Rp. {{ Cart::subtotal() }}</th>
+              </tr>
             </table>
           </div>
         </div>
