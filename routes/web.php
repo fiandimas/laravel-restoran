@@ -11,35 +11,43 @@
 |
 */
 
+// Auth Action
 Route::get('/','LoginController@index');
-Route::get('/login', function(){
+Route::get('/masuk', function(){
   return view('auth.login');
 });
+Route::post('/login','LoginController@login')->name('login');
+
+// Level Action
 Route::get('/level','LevelController@show');
-Route::get('/user','UserController@index');
-Route::get('/user/tambah','UserController@add');
-Route::get('/user/{id}','UserController@edit')->name('user.edit');
-Route::post('/user/tambah','UserController@store')->name('user.store');
-Route::put('/user/{id}','UserController@update')->name('user.update');
-Route::delete('/user/{id}','UserController@delete');
+Route::get('/level/{id}','LevelController@edit')->name('level.edit');
+
+// User Action
+Route::get('/pengguna','UserController@index');
+Route::get('/pengguna/{id}','UserController@edit')->name('user.edit');
+
+// Menu Action
 Route::get('/masakan','MenuController@index');
 Route::get('/masakan/tambah','MenuController@add');
-Route::post('/masakan/tambah','MenuController@store')->name('menu.store');
 Route::get('/masakan/{id}','MenuController@edit')->name('menu.edit');
-Route::post('/masakan/{id}','MenuController@update')->name('menu.update');
+Route::post('/masakan/tambah','MenuController@store')->name('menu.store');
+Route::put('/masakan/{id}','MenuController@update')->name('menu.update');
 Route::delete('/masakan/{id}','MenuController@delete')->name('menu.delete');
-Route::get('/level/{id}','LevelController@edit')->name('level.edit');
-Route::post('/level/{id}','LevelController@update')->name('level.update');
-Route::post('/login','LoginController@login')->name('login');
-Route::post('/transaksi/save','TransactionController@buy')->name('transaction.buy');
+
+// Transaction Action
 Route::get('/transaksi','TransactionController@index')->name('transaction');
-Route::get('/transaksi/destroy','TransactionController@destroyCart')->name('cart.destroy');
+Route::get('/transaksi/hapus','TransactionController@destroyCart')->name('cart.destroy');
 Route::get('/transaksi/{rowId}','TransactionController@removeCart')->name('cart.remove');
 Route::get('/transaksi/{id}/{status}','TransactionController@addCart')->name('cart.add');
+Route::post('/transaksi/save','TransactionController@buy')->name('transaction.buy');
+
+// Report Action
 Route::get('/laporan','ReportController@index');
-Route::get('/laporan/{id}','ReportController@show')->name('report.print');
-Route::get('/logout', function(){
+Route::get('/laporan/{id}','ReportController@print')->name('report.print');
+
+// Logout Action
+Route::get('/keluar', function(){
   Session::flush();
-  return redirect('/login');
+  return redirect('/masuk');
 })->name('logout');
 
