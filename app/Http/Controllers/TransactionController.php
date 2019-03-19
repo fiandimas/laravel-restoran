@@ -86,6 +86,7 @@ class TransactionController extends Controller {
   
       Transaction::create([
         'id_user' => Session::get('id_user'),
+        'id_order' => (int)$req->no_order,
         'total' => $total
       ]);
   

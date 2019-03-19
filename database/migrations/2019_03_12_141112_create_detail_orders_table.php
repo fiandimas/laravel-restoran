@@ -20,7 +20,7 @@ class CreateDetailOrdersTable extends Migration
             $table->integer('id_menu')->index()->unsigned();
             $table->foreign('id_menu')->references('id')->on('menu');
             $table->integer('qty');
-            $table->string('information');
+            $table->string('information')->nullable();
             $table->string('status_detail_order');
             $table->timestamps();
         });

@@ -9,6 +9,7 @@ class Transaction extends Model
   protected $table = 'transaction';
   protected $fillable = [
     'id_user',
+    'id_order',
     'total'
   ];
 }

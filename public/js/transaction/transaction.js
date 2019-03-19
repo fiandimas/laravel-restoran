@@ -24,6 +24,9 @@ $('#form').submit(function(e){
           window.location.href = '/transaksi';
         }, 2000);
       }
+    },
+    error: function(data){
+      console.log(data.responseJSON.message)
     }
   })
 })
