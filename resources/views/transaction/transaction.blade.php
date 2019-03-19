@@ -26,11 +26,12 @@
       <div class="card">
         <div class="card-wrap">
           <div class="card-body">
-            <form>
+            <form method="POST" action="{{ route('transaction.buy') }}">
+              @csrf
               <div class="row">
                 <div class="col form-group">
                   <label class="control-label">No Order</label>
-                  <input type="number" class="form-control" readonly value="1">
+                  <input type="number" class="form-control" readonly value="{{ ++$last_order }}" name="no_order">
                 </div>
               </div>
 
@@ -48,7 +49,7 @@
               <div class="row">
                 <div class="col form-group">
                   <label class="control-label">Keterangan</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" name="information">
                 </div>
               </div>
 
@@ -61,7 +62,7 @@
                   </select>
                 </div>
               </div>
-            </form>
+            
             <span>
               <h3>Transaksi<small><a href="{{ route('cart.destroy') }}" style="float:right" class="btn btn-danger">Hapus</a></small></h3>
             </span>
@@ -91,6 +92,8 @@
                 <th>Rp. {{ Cart::subtotal() }}</th>
               </tr>
             </table>
+            <button type="submit" class="btn btn-success">Simpan</button>
+            </form>
           </div>
         </div>
       </div>

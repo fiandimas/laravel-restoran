@@ -36,6 +36,7 @@ Route::delete('/masakan/{id}','MenuController@delete')->name('menu.delete');
 Route::get('/level/{id}','LevelController@edit')->name('level.edit');
 Route::post('/level/{id}','LevelController@update')->name('level.update');
 Route::post('/login','LoginController@login')->name('login');
+Route::post('/transaksi/save','TransactionController@buy')->name('transaction.buy');
 Route::get('/transaksi','TransactionController@index');
 Route::get('/transaksi/destroy','TransactionController@destroyCart')->name('cart.destroy');
 Route::get('/transaksi/{rowId}','TransactionController@removeCart')->name('cart.remove');
