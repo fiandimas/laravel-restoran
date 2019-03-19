@@ -21,7 +21,7 @@ $('#form').submit(function(e){
           button: false
         })
         setInterval(() => {
-          window.location.href = '/transaksi';
+          window.location.href = url + '/transaksi';
         }, 2000);
       }
     },

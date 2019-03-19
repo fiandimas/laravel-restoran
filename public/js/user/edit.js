@@ -10,14 +10,12 @@ $('#form').submit(function(e){
       swal({
         title: 'Sukses!',
         text: 'Sukses sunting pengguna',
-        icon: 'success'
-      }).then((back) => {
-        if(back){
-          window.location.href = url + '/pengguna';
-        }else{
-          window.location.href = url + '/pengguna';
-        }
+        icon: 'success',
+        button: false
       })
+      setInterval(() => {
+        window.location.href = url + '/pengguna'
+      }, 2000);
     },
     error: function(){
       $('#submit').attr('disabled',false);

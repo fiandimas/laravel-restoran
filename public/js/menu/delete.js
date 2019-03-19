@@ -18,14 +18,12 @@ function deleteMenu(id){
             title: 'Sukses',
             text: 'Sukses hapus masakan',
             button: 'Kembali',
-            icon: 'success'
-          }).then((back) => {
-            if(back){
-              window.location.href = url + '/masakan';
-            }else{
-              window.location.href = url + '/masakan';
-            }
+            icon: 'success',
+            button: false
           })
+          setInterval(() => {
+            window.location.href = url + '/masakan'
+          }, 2000);
         }
       })
     }else{

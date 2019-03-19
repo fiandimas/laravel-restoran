@@ -11,14 +11,12 @@ $('#form').submit(function(e){
         title: 'Sukses!',
         text: 'Sukses sunting masakan',
         icon: 'success',
-        button: 'Kembali'
-      }).then((back) => {
-        if(back){
-          window.location.href = url + '/masakan';
-        }else{
-          window.location.href = url + '/masakan';
-        }
+        button: 'Kembali',
+        button: false
       })
+      setInterval(() => {
+        window.location.href = url + '/masakan'
+      }, 2000);
     },
     error: function(){
       $('#submit').attr('disabled',false);

@@ -18,14 +18,11 @@ $('#form').submit(function(e){
           title: 'Sukses!',
           text: 'Sukses menambah pengguna',
           icon: 'success',
-          button: 'Kembali'
-        }).then((back) => {
-          if(back){
-            window.location.href = url + '/pengguna';
-          }else{
-            window.location.href = url + '/pengguna';
-          }
+          button: false
         })
+        setInterval(() => {
+          window.location.href = url + '/pengguna'
+        }, 2000);
       }
     },
     error: function(){

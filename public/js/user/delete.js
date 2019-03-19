@@ -16,14 +16,12 @@ function deleteUser(id){
           swal({
             title: 'Sukses!',
             text: 'Sukses menghapus pengguna',
-            icon: 'success'
-          }).then((back) => {
-            if(back){
-              window.location.href = url + '/pengguna';
-            }else{
-              window.location.href = url + '/pengguna';
-            }
+            icon: 'success',
+            button: false
           })
+          setInterval(() => {
+            window.location.href = url + '/pengguna'
+          }, 2000);
         }
       })
     }else{
