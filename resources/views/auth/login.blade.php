@@ -44,12 +44,12 @@
                       </div>
                       <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                       <div class="invalid-feedback" id="invalid-password">
-                        
+                        Please fill in your password
                       </div>
                     </div>
 
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4" id="cekk">
+                      <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4" id="btnLogin">
                         Login
                       </button>
                     </div>
@@ -80,6 +80,7 @@
     <!-- Template JS File -->
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
       $(document).ready(function(){
         $.ajaxSetup({
@@ -90,20 +91,35 @@
 
         $('#login').submit(function(event){
           event.preventDefault();
-          $('#cekk').attr('disabled',true);
+          $('#btnLogin').attr('disabled',true);
           $.ajax({
             type: 'POST',
             url: 'http://localhost:8000/login',
             data: $('#login').serialize(),
             dataType: 'JSON',
             success: function(data){
-              console.log(data)
-              $('#invalid-password').append('asdas').show()
-              $('#cekk').attr('disabled',false);
+              $('#btnLogin').attr('disabled',false);
+              if(!data.success){
+                swal({
+                  title: 'Gagal',
+                  text: data.message,
+                  icon: 'error',
+                })
+              }else{
+                swal({
+                  title: 'Sukses',
+                  text: data.message,
+                  icon: 'success',
+                  button: false,
+                })
+                setInterval(function(){
+                  window.location.href = data.redirect
+                },1000)
+              }
             },
-            error: function(request){
-              $('#cekk').attr('disabled',false);
-              console.log(request)
+            error: function(data){
+              $('#btnLogin').attr('disabled',false);
+              console.log(data)
             }
           })
         })

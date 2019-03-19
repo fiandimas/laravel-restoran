@@ -50,6 +50,9 @@
             </div>
             <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
+              <li class="{{ isset($adashboard) ? $adashboard : '' }}">
+                <a class="nav-link" href="{{ url('/') }}"><i class="far fa-square"></i> <span>Dashboard</span></a>
+              </li>
               <li class="dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Master</span></a>
                 <ul class="dropdown-menu">
@@ -79,6 +82,7 @@
             <div class="section-header">
               <h1>{{ $capt }}</h1>
             </div>
+            @yield('dashboard')
             <div class="row">
               <div class="col">
                 <div class="card">
