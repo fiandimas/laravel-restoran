@@ -16,7 +16,7 @@
         <td>{{ $data->name }}</td>
         <td>{{ $data->created_at }}</td>
         <th>
-          <a href="{{ route('report.print',['id' => $data->id ]) }}" class="btn btn-success" >Cetak</a>
+          <a href="{{ route('report.print',['id' => $data->id ]) }}" class="btn btn-success">Cetak</a>
         </th>
       </tr>
       @endforeach

@@ -32,7 +32,7 @@ class ReportController extends Controller {
     $total = 0;
     
     if(!empty($data[0])){
-      $pdf =  PDF::loadView('report.hasil',compact('data','total'));
+      $pdf =  PDF::loadView('report.result',compact('data','total'));
     
       return $pdf->download('invoice-'.$data[0]->created_at.time().'.pdf');
     }else{
