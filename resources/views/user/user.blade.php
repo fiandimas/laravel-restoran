@@ -1,7 +1,7 @@
 @extends('../template')
 @section('content')
   <div class="card-body">
-    <center><a href="{{ url('user/tambah') }}" class="btn btn-success mt-2 mb-4">Tambah User</a></center>
+    <center><a href="{{ url('pengguna/tambah') }}" class="btn btn-success mt-2 mb-4">Tambah Pengguna</a></center>
     <table class="table table-striped">
       <tr>
         <th>Nomor</th>

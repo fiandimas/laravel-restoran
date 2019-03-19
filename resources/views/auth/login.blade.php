@@ -31,20 +31,20 @@
                   <form class="needs-validation" novalidate="" id="login">
                     @csrf
                     <div class="form-group">
-                      <label for="username">Username</label>
+                      <label for="username">Nama Pengguna</label>
                       <input id="username" type="text" class="form-control" name="username" tabindex="1" required autofocus>
                       <div class="invalid-feedback">
-                        Please fill in your username
+                        Mohon masukkan nama pengguna
                       </div>
                     </div>
 
                     <div class="form-group">
                       <div class="d-block">
-                        <label for="password" class="control-label">Password</label>
+                        <label for="password" class="control-label">Kata Sandi</label>
                       </div>
                       <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                       <div class="invalid-feedback" id="invalid-password">
-                        Please fill in your password
+                        Mohon masukkan kata sandi
                       </div>
                     </div>
 
@@ -81,49 +81,6 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-        })
-
-        $('#login').submit(function(event){
-          event.preventDefault();
-          $('#btnLogin').attr('disabled',true);
-          $.ajax({
-            type: 'POST',
-            url: 'http://localhost:8000/login',
-            data: $('#login').serialize(),
-            dataType: 'JSON',
-            success: function(data){
-              $('#btnLogin').attr('disabled',false);
-              if(!data.success){
-                swal({
-                  title: 'Gagal',
-                  text: data.message,
-                  icon: 'error',
-                })
-              }else{
-                swal({
-                  title: 'Sukses',
-                  text: data.message,
-                  icon: 'success',
-                  button: false,
-                })
-                setInterval(function(){
-                  window.location.href = data.redirect
-                },1000)
-              }
-            },
-            error: function(data){
-              $('#btnLogin').attr('disabled',false);
-              console.log(data)
-            }
-          })
-        })
-      })
-    </script>
+    <script src="{{ asset('js/auth.js') }}"></script>
   </body>
 </html>

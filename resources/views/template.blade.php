@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Ecommerce Dashboard &mdash; Stisla</title>
+    <title>Restoran fiandimas &mdash; Stisla</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('modules/bootstrap/css/bootstrap.min.css') }}">
@@ -34,7 +34,7 @@
               <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
-                  <i class="fas fa-sign-out-alt"></i> Logout
+                  <i class="fas fa-sign-out-alt"></i> Keluar
                 </a>
               </div>
             </li>
@@ -49,29 +49,29 @@
               <a href="/">St</a>
             </div>
             <ul class="sidebar-menu">
-              <li class="menu-header">Dashboard</li>
-              @if(Session::get('id_level') == 1)
+              <li class="menu-header">Dasbor</li>
               <li class="{{ isset($adashboard) ? $adashboard : '' }}">
-                <a class="nav-link" href="{{ url('/') }}"><i class="far fa-square"></i> <span>Dashboard</span></a>
+                <a class="nav-link" href="{{ url('/') }}"><i class="fas fa-home"></i> <span>Dasbor</span></a>
               </li>
+              @if(Session::get('id_level') == 1)
               <li class="dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Master</span></a>
                 <ul class="dropdown-menu">
                   <li class="{{ isset($alevel) ? $alevel : '' }}"><a class="nav-link" href="{{ url('/level') }}">Level</a></li>
                   <li class="{{ isset($amenu) ? $amenu : '' }}"><a class="nav-link" href="{{ url('/masakan') }}">Masakan</a></li>
-                  <li class="{{ isset($auser) ? $auser : '' }}"><a class="nav-link" href="{{ url('/user') }}">User</a></li>
+                  <li class="{{ isset($auser) ? $auser : '' }}"><a class="nav-link" href="{{ url('/pengguna') }}">Pengguna</a></li>
                 </ul>
               </li>
               @endif
               <li class="dropdown active">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Transaksi</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-cart-plus"></i><span>Transaksi</span></a>
                 <ul class="dropdown-menu">
                   <li class="{{ isset($atransaction) ? $atransaction : '' }}"><a class="nav-link" href="{{ url('/transaksi') }}">Transaksi</a></li>
                 </ul>
               </li>
               @if(Session::get('id_level') == 1)
               <li class="dropdown active">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Laporan</span></a>
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-print"></i><span>Laporan</span></a>
                 <ul class="dropdown-menu">
                   <li class="{{ isset($areport) ? $areport : '' }}"><a class="nav-link" href="{{ url('/laporan') }}">Laporan PDF</a></li>
                 </ul>
@@ -117,6 +117,7 @@
     <!-- Template JS File -->
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
       // Set ajax headers
       $.ajaxSetup({
@@ -125,22 +126,12 @@
         }
       })
     </script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>const url = "{{ url('') }}";</script>
     @isset($js)
       <script src="{{ asset($js) }}"></script>
     @endisset
-    <script>
-      function cart(id){
-        var status_order = $('#status_order-'+id).find(':selected').val();
-        $.ajax({
-          type: 'GET',
-          url: url + '/transaksi/' + id + '/' + status_order,
-          success: function(){
-            window.location.href = url + '/transaksi';
-          }
-        })
-      }
-    </script>
+    @isset($cart)
+      <script src="{{ asset($cart) }}"></script>
+    @endisset
   </body>
 </html>

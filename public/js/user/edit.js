@@ -8,21 +8,21 @@ $('#form').submit(function(e){
     success: function(){
       $('#submit').attr('disabled',false);
       swal({
-        title: 'Sukses',
-        text: 'Sukses update user',
+        title: 'Sukses!',
+        text: 'Sukses sunting pengguna',
         icon: 'success'
       }).then((back) => {
         if(back){
-          window.location.href = url + '/user';
+          window.location.href = url + '/pengguna';
         }else{
-          window.location.href = url + '/user';
+          window.location.href = url + '/pengguna';
         }
       })
     },
     error: function(){
       $('#submit').attr('disabled',false);
       swal({
-        title: 'Error',
+        title: 'Gagal!',
         text: 'Silahkan coba lagi',
         icon: 'error'
       })

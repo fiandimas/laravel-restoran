@@ -8,18 +8,22 @@ $('#form').submit(function(e){
     success: function(data){
       $('#submit').attr('disabled',false);
       if(!data.success){
-        $('#username').html(data.message)
+        swal({
+          title: 'Gagal!',
+          text: data.message,
+          icon: 'error'
+        })
       }else{
         swal({
-          title: 'Sukses',
-          text: 'Sukses menambah user',
+          title: 'Sukses!',
+          text: 'Sukses menambah pengguna',
           icon: 'success',
           button: 'Kembali'
         }).then((back) => {
           if(back){
-            window.location.href = url + '/user';
+            window.location.href = url + '/pengguna';
           }else{
-            window.location.href = url + '/user';
+            window.location.href = url + '/pengguna';
           }
         })
       }

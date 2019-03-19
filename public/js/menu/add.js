@@ -8,8 +8,8 @@ $('#form').submit(function(e){
     success: function(data){
       $('#submit').attr('disabled',false);
       swal({
-        title: 'Sukses',
-        text: 'Sukses menambahkan masakan, klik "Kembali" untuk kembali',
+        title: 'Sukses!',
+        text: 'Sukses menambahkan masakan',
         icon: 'success',
         button: 'Kembali'
       }).then((back) => {

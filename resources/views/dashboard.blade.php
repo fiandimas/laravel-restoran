@@ -8,7 +8,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Masakan</h4>
+            <h4><a href="{{ url('masakan') }}">Masakan</a></h4>
           </div>
           <div class="card-body">
             {{ $menu }}
@@ -23,7 +23,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>Level</h4>
+            <h4><a href="{{ url('level') }}">Level</a></h4>
           </div>
           <div class="card-body">
             {{ $level }}
@@ -38,7 +38,7 @@
         </div>
         <div class="card-wrap">
           <div class="card-header">
-            <h4>User</h4>
+            <h4><a href="{{ url('pengguna') }}">Pengguna</a></h4>
           </div>
           <div class="card-body">
             {{ $user }}

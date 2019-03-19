@@ -1,7 +1,7 @@
 @extends('../template')
 @section('content')
   <div class="card-body">
-    <form id="form" action="{{ route('user.store') }}" method="POST">
+    <form id="form" action="{{ route('user.store') }}">
       @csrf
       <div class="row">
         <div class="col form-group">
@@ -14,7 +14,6 @@
         <div class="col form-group">
           <label class="control-label">Nama Pengguna</label>
           <input type="text" class="form-control"  name="username">
-          <font color="red" id="username"></font>
         </div>
       </div>
 
@@ -44,6 +43,6 @@
     </form>
   </div>
   <div class="card-footer">
-    <a href="{{ url('masakan') }}" class="btn btn-success">Kembali</a>
+    <a href="{{ url('pengguna') }}" class="btn btn-success">Kembali</a>
   </div>
 @endsection

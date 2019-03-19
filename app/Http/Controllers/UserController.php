@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Hash;
-use App\Models\User;
 use App\Models\Level;
+use App\Models\User;
+use Hash;
 
-class UserController extends Controller
-{
+class UserController extends Controller {
+
   public function __construct(){
     $this->middleware('admin');
   }
@@ -19,7 +19,7 @@ class UserController extends Controller
               ->get();
     $data = [
       'user' => $user,
-      'capt' => 'Master User',
+      'capt' => 'Master Pengguna',
       'auser' => 'active',
       'js' => 'js/user/delete.js'
     ];
@@ -48,7 +48,7 @@ class UserController extends Controller
     if($user->count() > 0){
       return response()->json([
         'success' => false,
-        'message' => 'Username sudah terdaftar'
+        'message' => 'Nama Pengguna sudah terdaftar'
       ]);
     }else{
       User::create([
@@ -69,15 +69,20 @@ class UserController extends Controller
               ->join('level','level.id','=','user.id_level')
               ->select('user.id','user.name as uname','username','level.name as lname','level.id as lid')
               ->first();
-    $level = Level::where('id','!=', $user->lid)->select('id','name')->get(); 
-    $data = [
-      'user' => $user,
-      'level' => $level,
-      'capt' => 'Edit User',
-      'auser' => 'active',
-      'js' => 'js/user/edit.js'
-    ];
-    return view('user.edit', $data);
+    if($user){
+      $level = Level::where('id','!=', $user->lid)->select('id','name')->get(); 
+      $data = [
+        'user' => $user,
+        'level' => $level,
+        'capt' => 'Edit User',
+        'auser' => 'active',
+        'js' => 'js/user/edit.js'
+      ];
+      return view('user.edit', $data);
+    }else{
+      return redirect('/pengguna');
+    }          
+    
   }
 
   public function update(Request $req,$id){

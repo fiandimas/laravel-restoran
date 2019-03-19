@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Models\Transaction;
+use App\Models\Level;
+use App\Models\Menu;
 use App\Models\User;
 use Session;
 use Hash;
-use App\Models\Menu;
-use App\Models\Level;
-use App\Models\Transaction;
 
-class LoginController extends Controller
-{
+class LoginController extends Controller {
+
   public function __construct(){
     $this->middleware('admin',['except' => [
       'login','index'
@@ -19,16 +20,20 @@ class LoginController extends Controller
   }
   
   public function index(){
-    $data = [
-      'menu' => Menu::get()->count(),
-      'level' => Level::get()->count(),
-      'user' => User::get()->count(),
-      'transaction' => Transaction::get()->count(),
-      'capt' => 'Dashboard',
-      'adashboard' => 'active'
-    ]; 
-
-    return view('dashboard', $data);
+    if(Session::get('login')){
+      $data = [
+        'menu' => Menu::get()->count(),
+        'level' => Level::get()->count(),
+        'user' => User::get()->count(),
+        'transaction' => Transaction::get()->count(),
+        'capt' => 'Dashboard',
+        'adashboard' => 'active'
+      ]; 
+  
+      return view('dashboard', $data);
+    }else{
+      return redirect('/masuk');
+    }
   }
   
   public function login(Request $req){
@@ -57,13 +62,13 @@ class LoginController extends Controller
       }else{
         return response()->json([
           'success' => FALSE,
-          'message' => 'Wrong password!'
+          'message' => 'Password yang anda masukkan salah!'
         ]);
       }
     }else{
       return response()->json([
         'success' => FALSE,
-        'message' => 'Username not registered!'
+        'message' => 'Nama Pengguna tidak terdaftar!'
       ]);
     }
   }

@@ -3,23 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Menu;
-use App\Models\Order;
 use App\Models\DetailOrder;
-use DB;
+use App\Models\Transaction;
+use App\Models\Order;
+use App\Models\Menu;
+use Session;
 use Cart;
+use DB;
 
-class TransactionController extends Controller
-{
-  public function __construct(){
-    $this->middleware('admin');
-  }
+class TransactionController extends Controller {
+
   public function index(){
     $data = [
       'menu' => Menu::get(),
-      'last_order' => $this->getLatestOrder()->id,
+      'last_order' => $this->getLatestOrder(),
       'capt' => 'Transaksi',
-      'atransaction' => 'active'
+      'atransaction' => 'active',
+      'js' => 'js/transaction/transaction.js',
+      'cart' => 'js/transaction/cart.js'
     ];
     
     return view('transaction.transaction',$data);
@@ -46,38 +47,59 @@ class TransactionController extends Controller
 
   public function removeCart($rowId){
     Cart::remove($rowId);
+
     return redirect('/transaksi');
   }
 
   public function destroyCart(){
     Cart::destroy();
+    
     return redirect('/transaksi');
   }
 
   public function buy(Request $req){
-    Order::create([
-      'num_table' => $req->num_table,
-      'id_user' => 1,
-      'information' => $req->information,
-      'status_order' => $req->status_order
-    ]);
-
-    $cart = [];
-    foreach(Cart::content() as $data){
-      array_push($cart,[
-        'id_order' => (int)$req->no_order,
-        'id_menu' =>  $data->id,
-        'qty' => $data->qty,
-        'information' => null,
-        'status_detail_order' => $data->options->status 
+    if(Cart::count() == 0){
+      return response()->json([
+        'success' => FALSE,
+        'message' => 'Silahkan pesan masakan terlebih dahulu!'
+      ]);
+    }else{
+      Order::create([
+        'num_table' => $req->num_table,
+        'id_user' => Session::get('id_user'),
+        'information' => $req->information,
+        'status_order' => $req->status_order
+      ]);
+  
+      $cart = [];
+      $total = 0;
+      foreach(Cart::content() as $data){
+        array_push($cart,[
+          'id_order' => (int)$req->no_order,
+          'id_menu' =>  $data->id,
+          'qty' => $data->qty,
+          'information' => NULL,
+          'status_detail_order' => $data->options->status 
+        ]);
+        $total += $data->subtotal;
+      }
+  
+      Transaction::create([
+        'id_user' => Session::get('id_user'),
+        'total' => $total
+      ]);
+  
+      DetailOrder::insert($cart);
+      Cart::destroy();
+  
+      return response()->json([
+        'success' => TRUE
       ]);
     }
-    DetailOrder::insert($cart);
-    Cart::destroy();
-    return redirect('/transaksi');
   }
 
   private function getLatestOrder(){
-    return Order::latest()->select('id')->first();
+    $data = Order::latest()->select('id')->first();
+    return empty($data) ? 0 : $data->id ;
   }
 }

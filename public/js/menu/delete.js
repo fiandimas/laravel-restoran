@@ -2,7 +2,7 @@ function deleteMenu(id){
   $('#button-'+id).attr('disabled',true);
   swal({
     title: 'Peringatan!',
-    text: 'Apa anda yakin menghapus menu ini ?',
+    text: 'Apa anda yakin menghapus masakan ini ?',
     icon: 'warning',
     buttons: true
   }).then((ok) => {

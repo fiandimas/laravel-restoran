@@ -26,7 +26,7 @@
       <div class="card">
         <div class="card-wrap">
           <div class="card-body">
-            <form method="POST" action="{{ route('transaction.buy') }}">
+            <form action="{{ route('transaction.buy') }}" id="form">
               @csrf
               <div class="row">
                 <div class="col form-group">
@@ -66,7 +66,7 @@
             <span>
               <h3>Transaksi<small><a href="{{ route('cart.destroy') }}" style="float:right" class="btn btn-danger">Hapus</a></small></h3>
             </span>
-            <table class="table table-striped">
+            <table class="table table-striped table-responsive">
               <tr>
                 <th>Masakan</th>
                 <th>Harga</th>
@@ -88,20 +88,15 @@
               </tr>
               @endforeach
               <tr style="border-bottom:5px black solid">
-                <th colspan="5">Total</th>
-                <th>Rp. {{ Cart::subtotal() }}</th>
+                <th colspan="4">Total</th>
+                <th colspan="2">Rp. {{ Cart::subtotal() }}</th>
               </tr>
             </table>
-            <button type="submit" class="btn btn-success">Simpan</button>
+            <button type="submit" class="btn btn-success" id="simpan">Simpan</button>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <script>
-    function cart(data = Array()){
-      console.log(data)
-    }
-  </script>
 @endsection

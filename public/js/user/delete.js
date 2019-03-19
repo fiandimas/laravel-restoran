@@ -2,7 +2,7 @@ function deleteUser(id){
   $('#button-'+id).attr('disabled',true);
   swal({
     title: 'Peringatan!',
-    text: 'Apa anda yakin menghapus user ini ?',
+    text: 'Apa anda yakin menghapus pengguna ini ?',
     icon: 'warning',
     buttons: true,
     dangerMode: true
@@ -11,17 +11,17 @@ function deleteUser(id){
       $('#delete-'+id).attr('disabled',true);
       $.ajax({
         type: 'DELETE',
-        url: url + '/user/' + id,
+        url: url + '/pengguna/' + id,
         success: function(){
           swal({
-            title: 'Sukses',
-            text: 'Sukses menghapus data user',
+            title: 'Sukses!',
+            text: 'Sukses menghapus pengguna',
             icon: 'success'
           }).then((back) => {
             if(back){
-              window.location.href = url + '/user';
+              window.location.href = url + '/pengguna';
             }else{
-              window.location.href = url + '/user';
+              window.location.href = url + '/pengguna';
             }
           })
         }

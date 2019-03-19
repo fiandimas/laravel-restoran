@@ -33,12 +33,12 @@
 
       <div class="row">
         <div class="col form-group">
-          <input type="submit" class="btn btn-warning" value="Tambah" id="submit">
+          <input type="submit" class="btn btn-warning" value="Simpan" id="submit">
         </div>
       </div>
     </form>
   </div>
   <div class="card-footer">
-    <a href="{{ url('user') }}" class="btn btn-success">Kembali</a>
+    <a href="{{ url('pengguna') }}" class="btn btn-success">Kembali</a>
   </div>
 @endsection
