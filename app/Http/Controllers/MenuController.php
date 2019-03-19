@@ -7,6 +7,10 @@ use App\Models\Menu;
 
 class MenuController extends Controller
 {
+  public function __construct(){
+    $this->middleware('admin');
+  }
+  
   public function index(){
     $menu = Menu::select('id','name','price')->get();
     $data = [

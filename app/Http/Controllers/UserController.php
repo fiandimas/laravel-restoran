@@ -9,6 +9,10 @@ use App\Models\Level;
 
 class UserController extends Controller
 {
+  public function __construct(){
+    $this->middleware('admin');
+  }
+  
   public function index(){
     $user =  User::join('level','level.id','=','user.id_level')
               ->select('user.id','user.name as uname','level.name as lname','username')

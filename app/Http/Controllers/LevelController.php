@@ -7,6 +7,10 @@ use App\Models\Level;
 
 class LevelController extends Controller
 {
+  public function __construct(){
+    $this->middleware('admin');
+  }
+  
   public function show(){
     $level = Level::get();
     $data = [

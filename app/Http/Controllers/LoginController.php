@@ -12,6 +12,11 @@ use App\Models\Transaction;
 
 class LoginController extends Controller
 {
+  public function __construct(){
+    $this->middleware('admin',['except' => [
+      'login','index'
+    ]]);
+  }
   
   public function index(){
     $data = [
@@ -38,24 +43,26 @@ class LoginController extends Controller
       if(Hash::check($req->password,$user->password)){
         $session = [
           'id_user' => $user->id,
-          'login' => true
+          'id_level' => $user->id_level,
+          'name' => $user->name,
+          'login' => TRUE
         ];
-
         Session::put($session);
+
         return response()->json([
-          'success' => true,
-          'message' => 'Success login, now you can login!',
+          'success' => TRUE,
+          'message' => 'Anda berhasil login!',
           'redirect' => '/'
         ]);
       }else{
         return response()->json([
-          'success' => false,
+          'success' => FALSE,
           'message' => 'Wrong password!'
         ]);
       }
     }else{
       return response()->json([
-        'success' => false,
+        'success' => FALSE,
         'message' => 'Username not registered!'
       ]);
     }

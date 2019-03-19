@@ -11,6 +11,9 @@ use Cart;
 
 class TransactionController extends Controller
 {
+  public function __construct(){
+    $this->middleware('admin');
+  }
   public function index(){
     $data = [
       'menu' => Menu::get(),

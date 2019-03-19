@@ -8,6 +8,7 @@ use PDF;
 
 class ReportController extends Controller
 {
+  
   public function index(){
     $order = Order::join('user','user.id','=','order.id_user')->select('order.id','order.num_table','order.created_at','user.name')->orderBy('created_at','DESC')->get();
     $data = [
