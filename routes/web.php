@@ -15,9 +15,6 @@ Route::get('/','LoginController@index');
 Route::get('/login', function(){
   return view('auth.login');
 });
-Route::get('/logout', function(){
-  return 'ok';
-})->name('logout');
 Route::get('/level','LevelController@show');
 Route::get('/user','UserController@index');
 Route::get('/user/tambah','UserController@add');
@@ -35,13 +32,14 @@ Route::get('/level/{id}','LevelController@edit')->name('level.edit');
 Route::post('/level/{id}','LevelController@update')->name('level.update');
 Route::post('/login','LoginController@login')->name('login');
 Route::post('/transaksi/save','TransactionController@buy')->name('transaction.buy');
-Route::get('/transaksi','TransactionController@index');
+Route::get('/transaksi','TransactionController@index')->name('transaction');
 Route::get('/transaksi/destroy','TransactionController@destroyCart')->name('cart.destroy');
 Route::get('/transaksi/{rowId}','TransactionController@removeCart')->name('cart.remove');
 Route::get('/transaksi/{id}/{status}','TransactionController@addCart')->name('cart.add');
 Route::get('/laporan','ReportController@index');
 Route::get('/laporan/{id}','ReportController@show')->name('report.print');
-Route::get('/cek', function(){
-  return Cart::content();
-});
+Route::get('/logout', function(){
+  Session::flush();
+  return redirect('/login');
+})->name('logout');
 

@@ -29,8 +29,8 @@
           </form>
           <ul class="navbar-nav navbar-right">
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-              <img alt="image" src="{{ asset('img/avatar/random.jpg') }}" class="rounded-circle mr-1">
-              <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
+              <img alt="image" src="{{ asset('img/avatar/default.png') }}" class="rounded-circle mr-1">
+              <div class="d-sm-none d-lg-inline-block">Hi, {{ Session::get('name') }}</div></a>
               <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-divider"></div>
                 <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger">
@@ -43,13 +43,14 @@
         <div class="main-sidebar sidebar-style-2">
           <aside id="sidebar-wrapper">
             <div class="sidebar-brand">
-              <a href="index.html">Stisla</a>
+              <a href="/">Stisla</a>
             </div>
             <div class="sidebar-brand sidebar-brand-sm">
-              <a href="index.html">St</a>
+              <a href="/">St</a>
             </div>
             <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
+              @if(Session::get('id_level') == 1)
               <li class="{{ isset($adashboard) ? $adashboard : '' }}">
                 <a class="nav-link" href="{{ url('/') }}"><i class="far fa-square"></i> <span>Dashboard</span></a>
               </li>
@@ -61,18 +62,21 @@
                   <li class="{{ isset($auser) ? $auser : '' }}"><a class="nav-link" href="{{ url('/user') }}">User</a></li>
                 </ul>
               </li>
+              @endif
               <li class="dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Transaksi</span></a>
                 <ul class="dropdown-menu">
                   <li class="{{ isset($atransaction) ? $atransaction : '' }}"><a class="nav-link" href="{{ url('/transaksi') }}">Transaksi</a></li>
                 </ul>
               </li>
+              @if(Session::get('id_level') == 1)
               <li class="dropdown active">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Laporan</span></a>
                 <ul class="dropdown-menu">
                   <li class="{{ isset($areport) ? $areport : '' }}"><a class="nav-link" href="{{ url('/laporan') }}">Laporan PDF</a></li>
                 </ul>
               </li>
+              @endif
             </ul>
           </aside>
         </div>
