@@ -12,7 +12,7 @@
 */
 
 // Auth Action
-Route::get('/','LoginController@index');
+Route::get('/','LoginController@index')->name('index');
 Route::get('/masuk', function(){
   return view('auth.login');
 });

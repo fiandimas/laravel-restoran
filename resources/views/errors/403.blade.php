@@ -47,7 +47,7 @@
                 </div>
               </form>
               <div class="mt-3">
-                <a href="{{ route('transaction') }}">Back to Home</a>
+                <a href="{{ route('index') }}">Back to Home</a>
               </div>
             </div>
           </div>
