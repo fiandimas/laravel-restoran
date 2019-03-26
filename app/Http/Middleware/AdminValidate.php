@@ -23,7 +23,7 @@ class AdminValidate
           \abort(403,'Unauthorized action.');
         }  
       }else{
-        return redirect('/login');
+        return redirect('/masuk');
       }    
     }
 }
